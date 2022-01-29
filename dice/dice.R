@@ -1,6 +1,9 @@
+library("ggplot2")
+
 roll <- function(bones = 1:6, size=1) {
   dice <- sample(bones, size, replace = TRUE)
   sum(dice)
 }
 
-roll(1:20, 2)
+rolls <- replicate(10000, roll(size=2))
+qplot(rolls, binwidth = 1)
