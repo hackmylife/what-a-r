@@ -8,4 +8,4 @@ diamonds2 <- diamonds %>%
   mutate(resid = exp(resid))
 
 ggplot(data = diamonds2) +
-  geom_point(mapping = aes(x = carat, y = resid))
+  geom_boxplot(mapping = aes(x = cut, y = resid))
