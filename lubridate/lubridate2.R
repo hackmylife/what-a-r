@@ -20,4 +20,11 @@ frights_dt <- flights %>%
   ) %>%
   select(origin, dest, ends_with("delay"), ends_with("time"))
 
-frights_dt
+frights_dt %>%
+  mutate(minute = minute(dep_time)) %>%
+  group_by(minute) %>%
+  summarise(
+    avg_delay = mean(dep_delay, na.rm = T),
+    n = n()) %>%
+  ggplot(aes(minute, avg_delay)) +
+    geom_line()
